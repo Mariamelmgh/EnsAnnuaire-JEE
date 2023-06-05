@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +32,17 @@
 		
 		<div class="mb-3">
 		  <label for="filiere" class="form-label">FILERE</label>
-		  <input  class="form-control" id="filiere" name= "filiere" placeholder="XXXXXX">
+		<!--    <input  class="form-control" id="filiere" name= "filiere" placeholder="XXXXXX">-->
+		
+			<select class="form-select" aria-label="Selectionner votre filiére" name="filiere">
+			 <c:forEach var="filiere" items= "${listFiliere}">
+			 
+			  <option value=<c:out value="${filiere.id}"/> > 
+			  	 <c:out value="${filiere.nom}"/>
+			  </option>
+			 
+			 </c:forEach>
+			</select>
 		</div>
 		
 		

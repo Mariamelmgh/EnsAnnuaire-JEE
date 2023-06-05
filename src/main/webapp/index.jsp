@@ -8,6 +8,6 @@
 </head>
 <body>
 
-hello
+<%@include  file="WEB-INF/views/RechercheEtudiant.html" %>
 </body>
 </html>

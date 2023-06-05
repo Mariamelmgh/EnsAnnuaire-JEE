@@ -5,10 +5,15 @@ public class Etudiant {
 	//département et téléphone 
 	
 	private String CNE;
+	
 	private String nom;
+	
 	private String prenom;
-	private String filiere;
+	
+	private Long filiereId;
+	
 	private String departement;
+	
 	private String telephone;
 	
 	
@@ -38,12 +43,12 @@ public class Etudiant {
 		this.prenom = prenom;
 	}
 	
-	public String getFiliere() {
-		return filiere;
+	public Long getFiliereId() {
+		return this.filiereId;
 	}
 	
-	public void setFiliere(String feilere) {
-		this.filiere = feilere;
+	public void setFiliere(Long filiereId) {
+		this.filiereId = filiereId;
 	}
 	
 	public String getDepartement() {
@@ -61,8 +66,7 @@ public class Etudiant {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	
-	
+
 	
 
 }
