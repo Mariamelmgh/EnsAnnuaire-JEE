@@ -24,17 +24,18 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body class="container-fluid">
+<body >
+<%@include  file="../index.jsp" %>
 <%
 	EtudiantDao etudiantDao = new EtudiantDao();
 	Etudiant etudiant = etudiantDao.rechercherEtudiant(request.getParameter("nom"));
 	//request.setAttribute("etudiant", etudiant);
 
 %>
-    <div class="card" style="width: 600px; margin: auto; margin-top: 50px">
+    <div class="container" style="width: 600px; margin: auto; margin-top: 50px">
         <h2 class="bg-primary text-light card-header">La résultat de rechereche</h2>
         <form class="form" action="register" method="post">
-            <table class="table table-hover table-striped">
+            <table class=" container">
                 <tr>
                     <td>CNE</td>
                     <td><%= etudiant.getCNE() %></td>

@@ -28,7 +28,8 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body class="container-fluid">
+<body class="">
+<%@include  file="../index.jsp" %>
 <%
 	 FiliereDao filieretDao = new FiliereDao();
 	 Filiere filiere = filieretDao.rechercherFiliere(request.getParameter("nom"));	
@@ -36,10 +37,10 @@
 	 String departement = departementDao.rechercherDepartement(filiere.getDepartementId()).getNom();
 	
 %>
-    <div class="card" style="width: 600px; margin: auto; margin-top: 50px">
+    <div class="container" style="width: 600px; margin: auto; margin-top: 50px">
         <h2 class="bg-dark text-light card-header">La résultat de rechereche</h2>
        
-            <table class="table table-hover table-striped">
+            <table class="container">
                 <tr>
                     <td>Id</td>
                     <td><%= filiere.getId() %></td>

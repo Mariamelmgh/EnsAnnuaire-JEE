@@ -29,6 +29,7 @@
 </head>
 
 <body class="container-fluid">
+<%@include  file="../index.jsp" %>
 <%
 	 DepartementDao departementDao = new DepartementDao();
 	 Departement departement = departementDao.rechercherDepartement(request.getParameter("nom"));
@@ -37,10 +38,10 @@
 	 filiers= filiereDao.afficherFiliersParDepartement(departement.getId());
 	
 %>
-    <div class="card" style="width: 600px; margin: auto; margin-top: 50px">
+    <div class="container" style="width: 600px; margin: auto; margin-top: 50px">
         <h2 class="bg-dark text-light card-header">La résultat de rechereche</h2>
        
-            <table class="table table-hover table-striped">
+            <table class="container">
                 <tr>
                     <td>Id</td>
                     <td><%= departement.getId() %></td>
