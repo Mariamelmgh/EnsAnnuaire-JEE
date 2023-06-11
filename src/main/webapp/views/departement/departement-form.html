@@ -1,0 +1,38 @@
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+<!-- Button trigger modal -->
+
+<button type="button" class="glow-on-hover"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Ajouter
+</button>
+
+
+<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle d�partement</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		     	<form action="<%= request.getContextPath() %>/insererDepartement" method= "POST">
+				
+				
+				
+				
+					<div class="mb-3">
+					  <label for="nom" class="form-label">Nom</label>
+					  <input  class="form-control" id="nom" name= "nom" placeholder="XXXXXX" value="<c:out value='${etudiant.getNom()}'  />" required>
+					</div>
+					
+					 </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					        <button type="submit" class="btn btn-primary">Enregistrer</button>
+		  	</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>

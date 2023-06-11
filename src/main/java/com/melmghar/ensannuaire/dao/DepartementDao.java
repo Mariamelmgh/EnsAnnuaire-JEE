@@ -53,7 +53,7 @@ public class DepartementDao {
 	//Rechercherundépartementdansl’annuaire
 	public Departement rechercherDepartement(String nom) throws ClassNotFoundException{
 			
-			String query = "SELECT * FROM Departement WHERE nom like '%"+nom+ "'%";
+			String query = "SELECT * FROM Departement WHERE nom like '%"+nom+ "%'";
 			
 			
 			Departement departement = new Departement();
@@ -69,10 +69,39 @@ public class DepartementDao {
 				System.out.println(preparedStatement);
 				
 				ResultSet result= preparedStatement.executeQuery();
+				result.next();
+				departement.setId(result.getLong("id"));
+				departement.setNom(result.getString("nom"));
+						
 				
+			}catch(SQLException exception) {
+				exception.printStackTrace();
 				
-					departement.setId(result.getLong("id"));
-					departement.setNom(result.getString("nom"));
+			}
+			return departement;
+		}
+	//Rechercherundépartementdansl’annuaire
+	public Departement rechercherDepartement(Long id) throws ClassNotFoundException{
+			
+			String query = "SELECT * FROM Departement WHERE id  =" +id ;
+			
+			
+			Departement departement = new Departement();
+			
+			Class.forName(Constent.DRIVER_NAME);
+			
+			try (Connection connection = DriverManager
+			.getConnection(Constent.DB_PATH,Constent.DB_USER,Constent.DB_PASSWORD);
+				PreparedStatement preparedStatement = connection.prepareStatement(query)){
+			
+				
+				//
+				System.out.println(preparedStatement);
+				
+				ResultSet result= preparedStatement.executeQuery();
+				result.next();
+				departement.setId(result.getLong("id"));
+				departement.setNom(result.getString("nom"));
 						
 				
 			}catch(SQLException exception) {
@@ -114,6 +143,70 @@ public class DepartementDao {
 		
 		return result;
 		
+		
+	}
+
+	public int modifierDepartement(Departement departement) throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+		
+		String query = "UPDATE Departement SET nom = '" + departement.getNom() +"' WHERE id = " + departement.getId();
+		int result = 0;
+		Class.forName(Constent.DRIVER_NAME);
+		
+		try 
+		(Connection connection = DriverManager
+		.getConnection(Constent.DB_PATH,Constent.DB_USER,Constent.DB_PASSWORD);
+				
+				PreparedStatement preparedStatement = connection.prepareStatement(query)){
+				
+		
+			
+			System.out.println(preparedStatement);
+			
+			result = preparedStatement.executeUpdate();
+			
+			
+			
+			
+		} catch(SQLException exception) {
+			exception.printStackTrace();
+			
+		}
+				
+		return result;
+	}
+
+	public int deleteDepartement(Long id) throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+		String  query = "DELETE FROM Departement where id=" +id;
+		int result = 0;
+		
+		Class.forName(Constent.DRIVER_NAME);
+		
+		try 
+		(Connection connection = DriverManager
+		.getConnection(Constent.DB_PATH,Constent.DB_USER,Constent.DB_PASSWORD);
+				
+				PreparedStatement preparedStatement = connection.prepareStatement(query)){
+				
+			
+			System.out.println(preparedStatement);
+			
+			result = preparedStatement.executeUpdate();
+			
+			
+			
+			
+		} catch(SQLException exception) {
+			exception.printStackTrace();
+			
+		}
+				
+				
+				
+		
+		
+		return result;	
 		
 	}
 	

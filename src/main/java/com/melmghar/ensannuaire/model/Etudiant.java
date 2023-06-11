@@ -1,5 +1,8 @@
 package com.melmghar.ensannuaire.model;
 
+import com.melmghar.ensannuaire.dao.DepartementDao;
+import com.melmghar.ensannuaire.dao.FiliereDao;
+
 public class Etudiant {
 	//CNE, nom, prénom, filière,
 	//département et téléphone 
@@ -13,8 +16,11 @@ public class Etudiant {
 	private Long filiereId;
 	
 	private String departement;
+	private String filiere;
+	
 	
 	private String telephone;
+	
 	
 	
 	//Getter & Setters
@@ -51,10 +57,28 @@ public class Etudiant {
 		this.filiereId = filiereId;
 	}
 	
-	public String getDepartement() {
+	public String getDepartement() throws ClassNotFoundException {
+		FiliereDao filiereDao = new FiliereDao();
+		Filiere filiere = filiereDao.rechercherFiliere(this.getFiliereId());
+		
+		DepartementDao departementDao = new DepartementDao();
+		
+		this.departement = departementDao.rechercherDepartement(filiere.getDepartementId()).getNom();
+		
 		return departement;
 	}
 	
+	public String getFiliere() throws ClassNotFoundException {
+		FiliereDao filiereDao = new FiliereDao();
+		Filiere filiere_ = filiereDao.rechercherFiliere(this.getFiliereId());
+		this.filiere = filiere_.getNom();
+		return filiere;
+	}
+
+	public void setFiliere(String filiere) {
+		this.filiere = filiere;
+	}
+
 	public void setDepartement(String departement) {
 	
 		this.departement = departement;
@@ -66,6 +90,24 @@ public class Etudiant {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+
+	public Etudiant(String cNE, String nom, String prenom, Long filiereId, String departement, String telephone) {
+		super();
+		CNE = cNE;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.filiereId = filiereId;
+		this.departement = departement;
+		this.telephone = telephone;
+	}
+
+	public Etudiant() {
+		super();
+	}
+	
+	
+	
+	
 
 	
 

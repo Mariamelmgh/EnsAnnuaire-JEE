@@ -1,0 +1,69 @@
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+<!-- Button trigger modal -->
+
+<button type="button" class="glow-on-hover"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Ajouter
+</button>
+
+
+<!-- Modal -->
+		<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouveau Etudiant</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		     	<form action="<%= request.getContextPath() %>/insererEtudiant" method= "POST">
+				
+				
+					<div class="mb-3">
+					  <label for="CNE" class="form-label">CNE</label>
+					  <input  id="CNE" name="CNE"  class="form-control" placeholder="P XXX -XXX -XXX -XXX" value="<c:out value='${etudiant.getCNE()}' />" required>
+					</div>
+				
+				
+					<div class="mb-3">
+					  <label for="nom" class="form-label">NOM</label>
+					  <input  class="form-control" id="nom" name= "nom" placeholder="XXXXXX" value="<c:out value='${etudiant.getNom()}'  />" required>
+					</div>
+					
+					<div class="mb-3">
+					  <label for="prenom" class="form-label">PRENOM</label>
+					  <input  class="form-control" id="prenom" name= "prenom" placeholder="XXXXXX" value="<c:out value='${etudiant.getPrenom()}'  />" required>
+					</div>
+					
+					<div class="mb-3">
+					  <label for="filiere" class="form-label">FILERE</label>
+				
+						<select class="form-select" name="filiere" required>
+						 <c:forEach var="filiere" items= "${listFiliere}">
+						 
+						  <option value="<c:out value='${filiere.id}'/>" > 
+						  	 <c:out value="${filiere.nom}"/>
+						  </option>
+						 
+						 </c:forEach>
+						</select>
+					</div>
+					
+					
+					
+					
+					<div class="mb-3">
+					  <label for="telephone" class="form-label">TELEPHONE</label>
+					  <input  class="form-control" id="telephone" name="telephone" placeholder="06 XXX XXXX XXX" value="<c:out value='${etudiant.getTelephone()}'  />" required>
+					</div>
+				
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-dark"  data-bs-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary " >Save changes</button>
+		  	</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
